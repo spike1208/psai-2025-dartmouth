@@ -4,11 +4,13 @@ int_list = []
 for i in my_list:
     int_list.append(int(i))
 repeat = []
-count = -1
+count = 0
 for i in int_list:
-    count = count + 1
     if correct_number == i:
         if count not in repeat:
             print(count)
             repeat.append(count)
+    if repeat == [] and count == len(int_list)-1:
+        print("your number is not in list")
+    count = count + 1
 
