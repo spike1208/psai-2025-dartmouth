@@ -3,6 +3,12 @@ correct_number = int(input("Please enter the number you want to look for: "))
 int_list = []
 for i in my_list:
     int_list.append(int(i))
+repeat = []
+count = -1
 for i in int_list:
+    count = count + 1
     if correct_number == i:
-        print(int_list.index(i))
+        if count not in repeat:
+            print(count)
+            repeat.append(count)
+
