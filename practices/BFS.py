@@ -30,4 +30,4 @@ def BFS(start, goal):
 
     return None  # no path found
 
-print("Path:", BFS("A", "E"))
+print("Path:", BFS("0", "50"))
