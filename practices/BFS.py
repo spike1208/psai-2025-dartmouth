@@ -28,6 +28,52 @@ def BFS(start, goal):
                 new_path = path + [neighbor]
                 queue.append(new_path)
 
-    return None  # no path found
+    return None
 
-print("Path:", BFS("0", "50"))
+def DFS(start, goal):
+    queue = [[start]]
+    visited = set()
+
+    while queue:
+        path = queue.pop()
+        current = path[-1]
+
+        if current == goal:
+            return path
+
+        if current not in visited:
+            visited.add(current)
+            for neighbor in adj_list.get(current, []):
+                if neighbor not in path:
+                    new_path = path + [neighbor]
+                    queue.append(new_path)
+
+    return None
+
+def DLS(start, goal, depth_limit):
+    stack = [(start, [start], 0)]  # node, path, depth
+    visited = set()
+
+    while stack:
+        current, path, depth = stack.pop()
+
+        if current == goal:
+            return path
+
+        if current not in visited and depth < depth_limit:
+            visited.add(current)
+            for neighbor in adj_list.get(current, []):
+                if neighbor not in path:  # to prevent cycles
+                    stack.append((neighbor, path + [neighbor], depth + 1))
+
+    return None
+
+def IDS(start, goal, max_depth=1000):
+    for depth in range(max_depth):
+        result = DLS(start, goal, depth)
+        if result is not None:
+            return result
+    return None
+
+# Example usage
+print("Path:", IDS("A", "H"))
