@@ -32,8 +32,7 @@ def BFS(start, goal):
             for neighbor in G.get(current, []):
                 new_path = path + [neighbor]
                 queue.append(new_path)
-
+    print(len(G["China"]))
     return None
 
-print(BFS('Euro',"China"))
-
+print(BFS('England',"China"))
